@@ -5,10 +5,9 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
-import { Product } from "./Product";
-import { ProductOfInterest } from "./ProductOfInterest";
+import { ProductOfInterest, SharedProduct } from ".";
 
-@Entity({ name: "users" })
+@Entity({ name: "user" })
 export class User {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
@@ -32,8 +31,8 @@ export class User {
   })
   active!: boolean;
 
-  @OneToMany(() => Product, product => product.user)
-  sharedProducts!:Product[];
+  @OneToMany(() => SharedProduct, sharedProduct => sharedProduct.user)
+  sharedProducts!:SharedProduct[];
 
   @OneToMany(() => ProductOfInterest, productOfInterest => productOfInterest.user)
   productsOfInterest!:ProductOfInterest[];

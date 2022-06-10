@@ -1,5 +1,5 @@
-import request from "supertest";
 import jwt from "jsonwebtoken";
+import request from "supertest";
 import app from "../../src/app";
 import { Context, RequestContext } from "../../src/helpers/requestContext";
 import { clearTablesContent } from "../helper";
@@ -13,7 +13,7 @@ let loginUrl: string;
 
 describe("Middlewares", () => {
   beforeAll(() => {
-    ctx = RequestContext.buildContext();
+    ctx = RequestContext.getInstance();
     logoutUrl = "/api/v1/auth/logout";
     signUpUrl = "/api/v1/auth/signup";
     activateUrl = "/api/v1/auth/activate-account";

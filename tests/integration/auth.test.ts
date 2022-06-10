@@ -1,11 +1,11 @@
-import request from "supertest";
-import { validate as uuidValidate } from "uuid";
 import { addDays } from "date-fns";
 import * as faker from "faker";
-import { clearTablesContent } from "../helper";
+import request from "supertest";
+import { validate as uuidValidate } from "uuid";
 import app from "../../src/app";
-import { generateLoginBody, generateSignUpBody } from "../__mocks__/auth";
 import { Context, RequestContext } from "../../src/helpers/requestContext";
+import { clearTablesContent } from "../helper";
+import { generateLoginBody, generateSignUpBody } from "../__mocks__/auth";
 
 let signUpUrl: string;
 let loginUrl: string;
@@ -18,7 +18,7 @@ let ctx: Context;
 
 describe("Authentication", () => {
   beforeAll(() => {
-    ctx = RequestContext.buildContext();
+    ctx = RequestContext.getInstance();
     signUpUrl = "/api/v1/auth/signup";
     loginUrl = "/api/v1/auth/login";
     activateUrl = "/api/v1/auth/activate-account";

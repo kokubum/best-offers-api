@@ -7,30 +7,21 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
-import { Product, User } from "./";
+import { Product, User } from ".";
 
-@Entity({ name: "product_of_interest" })
-export class ProductOfInterest {
+@Entity({ name: "shared_product" })
+export class SharedProduct {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
   @Column()
-  startPrice!: number;
-
-  @Column()
-  endPrice!:number;
-
-  @Column({
-    default:false,
-    nullable:false
-  })
-  activateForThirdUsers!:boolean;
+  stablishmentName!:string;
 
   @OneToOne(() => Product, { onDelete: "CASCADE", nullable: false })
   @JoinColumn()
   product!:Product;
 
-  @ManyToOne(()=> User,user=>user.productsOfInterest,{ onDelete: "CASCADE", nullable: false })
+  @ManyToOne(()=> User,user=>user.sharedProducts,{ onDelete: "CASCADE", nullable: false })
   user!:User;
 
   @Column()

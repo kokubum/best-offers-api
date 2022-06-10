@@ -2,11 +2,12 @@ import {
   Column,
   Entity,
   ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
+import { SharedProduct } from "./SharedProduct";
 import { Stablishment } from "./Stablishment";
-import { User } from "./User";
 
 @Entity({ name: "product" })
 export class Product {
@@ -22,8 +23,8 @@ export class Product {
   @ManyToOne(()=> Stablishment,stablishment=>stablishment.products,{ onDelete: "CASCADE", nullable: true })
   stablishment?:Stablishment;
 
-  @ManyToOne(()=> User,user=>user.sharedProducts,{ onDelete: "CASCADE", nullable: true })
-  user?:User;
+  @OneToOne(()=> SharedProduct,sharedProduct=>sharedProduct.product,{ nullable: true })
+  sharedProduct?:SharedProduct;
 
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   createdAt!: Date;

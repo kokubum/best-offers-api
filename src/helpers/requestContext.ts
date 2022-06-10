@@ -1,8 +1,7 @@
+import { SharedProductRepository } from "src/repositories/SharedProductRepository";
 import { Connection, getConnection } from "typeorm";
 import { SessionInfo } from "../@types/auth.types";
-import { UserRepository } from "../repositories";
-import { SessionRepository } from "../repositories/SessionRepository";
-import { TokenRepository } from "../repositories/TokenRepository";
+import { ProductOfInterestRepository, ProductRepository, SessionRepository, StablishmentRepository, TokenRepository, UserRepository } from "../repositories";
 import { EmailService, ValidateService } from "../services";
 
 export interface Context {
@@ -11,6 +10,10 @@ export interface Context {
     userRepository: UserRepository;
     sessionRepository: SessionRepository;
     tokenRepository: TokenRepository;
+    productRepository: ProductRepository;
+    productOfInterestRepository: ProductOfInterestRepository;
+    stablishmentRepository: StablishmentRepository;
+    sharedProductRepository: SharedProductRepository;
   };
   services: {
     emailService: EmailService;
@@ -37,6 +40,10 @@ export class RequestContext {
         userRepository: connection.getCustomRepository(UserRepository),
         sessionRepository: connection.getCustomRepository(SessionRepository),
         tokenRepository: connection.getCustomRepository(TokenRepository),
+        productRepository: connection.getCustomRepository(ProductRepository),
+        productOfInterestRepository: connection.getCustomRepository(ProductOfInterestRepository),
+        stablishmentRepository: connection.getCustomRepository(StablishmentRepository),
+        sharedProductRepository: connection.getCustomRepository(SharedProductRepository),
       },
       services: {
         emailService: new EmailService(),
