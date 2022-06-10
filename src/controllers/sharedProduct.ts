@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateSharedProductBody } from "src/@types/product.types";
+import { CreateSharedProductBody } from "../@types/sharedProduct.type";
 
 export async function getSharedProducts(req: Request, res: Response){
   const { ctx } = req;
@@ -24,7 +24,7 @@ export async function deleteSharedProduct(req: Request, res: Response){
 
   await ctx.db.sharedProductRepository.removeByUserAndId(user.id,id);
 
-  return res.status(204).send({
+  return res.status(200).send({
     status: "success",
     data: null
   });

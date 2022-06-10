@@ -1,10 +1,6 @@
 import {
   Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToOne,
-  PrimaryGeneratedColumn,
+  Entity, ManyToOne, PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
 import { Product, User } from "./";
@@ -26,8 +22,7 @@ export class ProductOfInterest {
   })
   activateForThirdUsers!:boolean;
 
-  @OneToOne(() => Product, { onDelete: "CASCADE", nullable: false })
-  @JoinColumn()
+  @ManyToOne(() => Product, { onDelete: "CASCADE", nullable: false })
   product!:Product;
 
   @ManyToOne(()=> User,user=>user.productsOfInterest,{ onDelete: "CASCADE", nullable: false })

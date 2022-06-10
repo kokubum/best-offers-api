@@ -9,11 +9,9 @@ export async function protect(req: Request, _res: Response, next: NextFunction):
   const { ctx } = req;
 
   const rawToken = req.headers.authorization;
-
   if (!rawToken) {
     throw new AppError("Missing Token", 400);
   }
-
   const rawTokenArr = rawToken.split(" ");
 
   const [bearer, token] = rawTokenArr;

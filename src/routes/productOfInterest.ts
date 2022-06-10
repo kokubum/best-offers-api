@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { createProductOfInterest, getProductsOfInterest } from "src/controllers";
-import { catchAsync } from "src/helpers/catchAsync";
+import { createProductOfInterest, getProductsOfInterest } from "../controllers";
+import { catchAsync } from "../helpers/catchAsync";
+import { protect } from "../middlewares/auth";
 
 class ProductOfInterestRouter {
   router: Router;
@@ -11,8 +12,8 @@ class ProductOfInterestRouter {
   }
 
   private registerControllers(): void {
-    this.router.get("/", catchAsync(getProductsOfInterest));
-    this.router.post("/", catchAsync(createProductOfInterest));
+    this.router.get("/", catchAsync(protect),catchAsync(getProductsOfInterest));
+    this.router.post("/", catchAsync(protect),catchAsync(createProductOfInterest));
 
   }
 }

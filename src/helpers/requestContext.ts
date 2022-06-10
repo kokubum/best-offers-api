@@ -1,7 +1,7 @@
-import { SharedProductRepository } from "src/repositories/SharedProductRepository";
 import { Connection, getConnection } from "typeorm";
 import { SessionInfo } from "../@types/auth.types";
 import { ProductOfInterestRepository, ProductRepository, SessionRepository, StablishmentRepository, TokenRepository, UserRepository } from "../repositories";
+import { SharedProductRepository } from "../repositories/SharedProductRepository";
 import { EmailService, ValidateService } from "../services";
 
 export interface Context {

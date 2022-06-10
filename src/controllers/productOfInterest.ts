@@ -26,7 +26,7 @@ export async function createProductOfInterest(req: Request, res: Response) {
 
   const product = await ctx.db.productRepository.findById(createBody.productId);
 
-  const productsOfInterest = await ctx.db.productOfInterestRepository.save({
+  const productOfInterest = await ctx.db.productOfInterestRepository.save({
     startPrice: createBody.startPrice,
     endPrice: createBody.endPrice,
     activateForThirdUsers: createBody.activateForThirdUsers,
@@ -37,7 +37,7 @@ export async function createProductOfInterest(req: Request, res: Response) {
   return res.status(201).send({
     status: "success",
     data: {
-      productsOfInterest,
+      productOfInterest,
     }
   });
 }

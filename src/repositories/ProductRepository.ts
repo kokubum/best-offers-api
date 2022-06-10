@@ -1,5 +1,5 @@
-import { AppError } from "src/helpers/appError";
 import { EntityRepository, Repository } from "typeorm";
+import { AppError } from "../helpers/appError";
 import { Product } from "../models";
 
 

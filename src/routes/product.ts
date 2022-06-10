@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { getProducts } from "src/controllers";
-import { catchAsync } from "src/helpers/catchAsync";
+import { getProducts } from "../controllers";
+import { catchAsync } from "../helpers/catchAsync";
 
 class ProductRouter {
   router: Router;

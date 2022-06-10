@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { createSharedProduct, deleteSharedProduct, getSharedProducts } from "src/controllers";
-import { catchAsync } from "src/helpers/catchAsync";
+import { createSharedProduct, deleteSharedProduct, getSharedProducts } from "../controllers";
+import { catchAsync } from "../helpers/catchAsync";
+import { protect } from "../middlewares/auth";
 
 class SharedProductRouter {
   router: Router;
@@ -11,9 +12,9 @@ class SharedProductRouter {
   }
 
   private registerControllers(): void {
-    this.router.get("/", catchAsync(getSharedProducts));
-    this.router.post("/", catchAsync(createSharedProduct));
-    this.router.delete("/:id", catchAsync(deleteSharedProduct));
+    this.router.get("/",  catchAsync(protect),catchAsync(getSharedProducts));
+    this.router.post("/",  catchAsync(protect),catchAsync(createSharedProduct));
+    this.router.delete("/:id",  catchAsync(protect),catchAsync(deleteSharedProduct));
   }
 }
 
