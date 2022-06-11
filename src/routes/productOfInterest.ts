@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createProductOfInterest, getProductsOfInterest } from "../controllers";
+import { createProductOfInterest, getProductsOfInterest, updateAlertProductOfInterest } from "../controllers";
 import { catchAsync } from "../helpers/catchAsync";
 import { protect } from "../middlewares/auth";
 
@@ -14,7 +14,7 @@ class ProductOfInterestRouter {
   private registerControllers(): void {
     this.router.get("/", catchAsync(protect),catchAsync(getProductsOfInterest));
     this.router.post("/", catchAsync(protect),catchAsync(createProductOfInterest));
-
+    this.router.put("/:id/alertdown", catchAsync(protect),catchAsync(updateAlertProductOfInterest));
   }
 }
 

@@ -22,6 +22,12 @@ export class ProductOfInterest {
   })
   activateForThirdUsers!:boolean;
 
+  @Column({
+    default:false,
+    nullable:false
+  })
+  alert!:boolean;
+
   @ManyToOne(() => Product, { onDelete: "CASCADE", nullable: false })
   product!:Product;
 

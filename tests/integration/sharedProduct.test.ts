@@ -10,8 +10,6 @@ import { generateMockProduct, generateMockProductList } from "../__mocks__/produ
 import { generateMockSharedProduct, generateMockSharedProductList } from "../__mocks__/sharedProduct";
 import { generateMockStablishment } from "../__mocks__/stablishment";
 
-
-
 let getSharedProductUrl: string;
 let createSharedProductUrl: string;
 let deleteSharedProductUrl:string;

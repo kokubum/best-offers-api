@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getProducts } from "../controllers";
+import { getProducts, updateProduct } from "../controllers";
 import { catchAsync } from "../helpers/catchAsync";
 
 class ProductRouter {
@@ -12,6 +12,7 @@ class ProductRouter {
 
   private registerControllers(): void {
     this.router.get("/", catchAsync(getProducts));
+    this.router.put("/:id",catchAsync(updateProduct));
   }
 }
 

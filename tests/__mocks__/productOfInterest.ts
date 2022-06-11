@@ -10,6 +10,7 @@ export function generateMockProductOfInterest({
   activateForThirdUsers = false,
   user = {} as User,
   product = {} as Product,
+  alert = false,
 }):ProductOfInterest {
   const userId = user.id;
   return {
@@ -21,7 +22,8 @@ export function generateMockProductOfInterest({
     updatedAt,
     user,
     product,
-    userId
+    userId,
+    alert
   };
 }
 

@@ -31,7 +31,8 @@ export async function createProductOfInterest(req: Request, res: Response) {
     endPrice: createBody.endPrice,
     activateForThirdUsers: createBody.activateForThirdUsers,
     product,
-    user
+    user,
+    alert: product.price >= createBody.startPrice && product.price <= createBody.endPrice ? true:false
   });
 
   return res.status(201).send({
@@ -39,5 +40,23 @@ export async function createProductOfInterest(req: Request, res: Response) {
     data: {
       productOfInterest,
     }
+  });
+}
+
+export async function updateAlertProductOfInterest(req:Request,res: Response){
+  const { ctx } = req;
+  const { user } = ctx.signature!;
+
+  const { id } = req.params;
+
+  const productOfInterest = await ctx.db.productOfInterestRepository.findByUserAndId(user.id,id);
+
+  productOfInterest.alert = false;
+
+  await ctx.db.productOfInterestRepository.save(productOfInterest);
+
+  return res.status(200).send({
+    status: "success",
+    data: null
   });
 }
