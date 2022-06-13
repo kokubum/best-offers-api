@@ -1,5 +1,6 @@
 import express, { Express } from "express";
 import { globalErrorHandler, notFoundUrlHandler } from "./controllers";
+import { populateStablishment } from "./controllers/stablishment";
 import { injectCtx } from "./middlewares/context";
 import { authRouter, productOfInterestRouter, productRouter, sharedProductRouter } from "./routes";
 
@@ -18,6 +19,7 @@ class AppController {
   }
 
   private routes(): void {
+    this.app.use("/api/v1/populateStablishment",populateStablishment);
     this.app.use("/api/v1/auth", authRouter);
     this.app.use("/api/v1/products", productRouter);
     this.app.use("/api/v1/productsOfInterest", productOfInterestRouter);
