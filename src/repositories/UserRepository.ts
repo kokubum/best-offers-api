@@ -1,10 +1,10 @@
-import { EntityRepository, Repository } from "typeorm";
 import * as bcrypt from "bcrypt";
-import { AppError } from "../helpers/appError";
-import { User } from "../models";
+import { EntityRepository, Repository } from "typeorm";
 import { SignUpBody } from "../@types/auth.types";
-import { capitalizeName } from "../helpers/utils";
+import { AppError } from "../helpers/appError";
 import { hashPassword } from "../helpers/auth";
+import { capitalizeName } from "../helpers/utils";
+import { User } from "../models";
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
@@ -56,6 +56,7 @@ export class UserRepository extends Repository<User> {
       password,
       firstName: capitalizeName(user.firstName),
       lastName: capitalizeName(user.lastName),
+      active: true // For no use of sendgrid
     });
   }
 }
